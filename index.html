@@ -1,0 +1,883 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Дорожня карта розвитку Instagram для Fomina.Designs — 7 фаз, чекбокси, готові промти.">
+<meta name="robots" content="noindex, nofollow">
+<style>
+  :root{color-scheme:light dark;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+  body{margin:0}
+  img{max-width:100%}
+  [hidden]{display:none!important}
+</style>
+<title>Instagram-система Fomina.Designs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700;800&family=Golos+Text:wght@400;500;600;700&display=swap">
+
+<style>
+:root{
+  --blue:#3346C4;
+  --orange:#FF622B;
+  --bg:#D3D3D3;
+  --bg-calm:#ECECEC;
+  --panel:#FFFFFF;
+  --dark:#212121;
+  --ink:#212121;
+  --ink-soft:#4B4B52;
+  --muted:#7C7C86;
+  --inactive:#D6D6D6;
+  --line:rgba(51,70,196,.28);
+  --grid:rgba(33,33,33,.13);
+  --on-blue:#FFFFFF;
+  --gap:13px;
+  --r:6px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#191919;
+    --bg-calm:#242424;
+    --panel:#212121;
+    --ink:#F2F2F2;
+    --ink-soft:#C6C6CE;
+    --muted:#8C8C96;
+    --inactive:#3A3A3A;
+    --line:rgba(120,140,255,.35);
+    --grid:rgba(255,255,255,.08);
+    --blue:#4E60E0;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#191919;
+  --bg-calm:#242424;
+  --panel:#212121;
+  --ink:#F2F2F2;
+  --ink-soft:#C6C6CE;
+  --muted:#8C8C96;
+  --inactive:#3A3A3A;
+  --line:rgba(120,140,255,.35);
+  --grid:rgba(255,255,255,.08);
+  --blue:#4E60E0;
+}
+
+*{box-sizing:border-box}
+
+body{
+  background-color:var(--bg);
+  background-image:
+    linear-gradient(to right, var(--grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+  background-size:80px 80px;
+  color:var(--ink);
+  font-family:"Golos Text",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:17px;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+
+.wrap{max-width:960px;margin:0 auto;padding:0 16px;padding-block:var(--gap) 64px;
+  display:flex;flex-direction:column;gap:var(--gap)}
+
+h1,h2,h3,.cond{
+  font-family:"Roboto Condensed","Golos Text",sans-serif;
+  font-weight:800;text-transform:uppercase;line-height:.88;
+  letter-spacing:.005em;margin:0;
+}
+
+/* ---------- hero ---------- */
+.hero{
+  background:var(--blue);color:var(--on-blue);
+  border-radius:var(--r);
+  padding:clamp(24px,5vw,52px);
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,.14) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,.14) 1px, transparent 1px);
+  background-size:80px 80px;
+}
+.kicker{
+  font-family:"Roboto Condensed",sans-serif;font-weight:700;text-transform:uppercase;
+  font-size:14px;letter-spacing:.14em;opacity:.82;margin:0 0 18px;
+}
+h1{font-size:clamp(38px,8.5vw,96px);text-wrap:balance;margin-bottom:22px}
+h1 .box-word{
+  background:var(--panel);color:var(--blue);
+  padding:0 .1em;border-radius:3px;
+  box-decoration-break:clone;-webkit-box-decoration-break:clone;
+}
+.lede{font-size:clamp(16px,2vw,19px);max-width:60ch;margin:0;opacity:.95}
+.lede b{font-weight:700}
+
+/* ---------- panels ---------- */
+.panel{
+  background:var(--panel);border:1px solid var(--line);
+  border-radius:var(--r);padding:clamp(18px,3.4vw,28px);
+}
+
+/* ---------- progress ---------- */
+.meter{display:flex;flex-wrap:wrap;gap:clamp(18px,4vw,36px);align-items:center}
+.meter-num{
+  font-family:"Roboto Condensed",sans-serif;font-weight:800;
+  font-size:clamp(84px,17vw,180px);line-height:.8;
+  color:var(--blue);font-variant-numeric:tabular-nums;
+  flex:none;letter-spacing:-.02em;
+}
+.meter-num sup{font-size:.26em;vertical-align:super;font-weight:700}
+.meter-body{flex:1 1 260px;min-width:0}
+.label{
+  font-family:"Roboto Condensed",sans-serif;font-weight:700;text-transform:uppercase;
+  font-size:13px;letter-spacing:.12em;color:var(--muted);
+}
+.bar{height:16px;background:var(--inactive);border-radius:3px;overflow:hidden;margin:10px 0}
+.bar i{display:block;height:100%;background:var(--orange);width:0;transition:width .4s ease}
+.btn{
+  font-family:"Roboto Condensed",sans-serif;font-weight:700;text-transform:uppercase;
+  font-size:13px;letter-spacing:.1em;
+  background:var(--orange);color:#fff;border:none;border-radius:3px;
+  padding:10px 16px;cursor:pointer;
+}
+.btn.ghost{background:none;color:var(--muted);border:1px solid var(--line)}
+.btn.ghost:hover{color:var(--blue);border-color:var(--blue)}
+.btn:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+
+/* ---------- rules ---------- */
+.rules h2{font-size:clamp(26px,4.6vw,40px);color:var(--blue);margin-bottom:18px}
+.rules-list{display:grid;gap:14px}
+.rule{display:grid;grid-template-columns:32px 1fr;gap:14px;align-items:start}
+.numbox{
+  width:32px;height:32px;flex:none;
+  border:1px solid var(--line);border-radius:3px;
+  display:grid;place-items:center;
+  font-family:"Roboto Condensed",sans-serif;font-weight:800;font-size:15px;
+  color:var(--blue);
+}
+.rule p{margin:0;color:var(--ink-soft);font-size:16px}
+.rule p b{color:var(--ink)}
+
+/* ---------- phase ---------- */
+.phase-head{display:flex;gap:16px;align-items:flex-start;margin-bottom:20px}
+.sqnum{
+  width:80px;height:80px;flex:none;position:relative;
+  border:1px solid var(--line);border-radius:3px;overflow:hidden;
+}
+.sqnum::before{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(to bottom right,
+    transparent calc(50% - .5px), var(--line) calc(50% - .5px),
+    var(--line) calc(50% + .5px), transparent calc(50% + .5px));
+}
+.sqnum span{
+  position:absolute;left:7px;bottom:4px;
+  font-family:"Roboto Condensed",sans-serif;font-weight:800;font-size:22px;
+  color:var(--blue);
+}
+.phase-title{flex:1 1 auto;min-width:0;padding-top:2px}
+.phase-title h2{font-size:clamp(28px,5.6vw,52px);color:var(--ink);text-wrap:balance}
+.phase-note{margin:12px 0 0;color:var(--ink-soft);font-size:16px;max-width:62ch}
+.phase-count{
+  flex:none;font-family:"Roboto Condensed",sans-serif;font-weight:700;
+  font-size:17px;color:var(--muted);font-variant-numeric:tabular-nums;padding-top:6px;
+}
+
+/* ---------- tasks ---------- */
+.tasks{display:grid}
+.task{
+  display:grid;grid-template-columns:26px 1fr;gap:14px;
+  padding:15px 0;border-top:1px solid var(--line);align-items:start;
+}
+.task:first-child{border-top:none;padding-top:4px}
+.box{
+  appearance:none;-webkit-appearance:none;margin:2px 0 0;
+  width:26px;height:26px;flex:none;border-radius:3px;
+  border:1px solid var(--blue);background:var(--panel);
+  cursor:pointer;position:relative;
+}
+.box:checked{background:var(--blue)}
+.box:checked::after{
+  content:"";position:absolute;left:8px;top:3px;width:7px;height:14px;
+  border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(42deg);
+}
+.box:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
+.task-body{min-width:0}
+.task-title{
+  font-family:"Roboto Condensed",sans-serif;font-weight:700;text-transform:uppercase;
+  font-size:clamp(19px,2.6vw,24px);line-height:1.02;
+  display:block;cursor:pointer;text-wrap:pretty;
+}
+.box:checked + .task-body .task-title{color:var(--muted);text-decoration:line-through;text-decoration-thickness:2px}
+.task-desc{margin:8px 0 0;font-size:16px;color:var(--ink-soft);max-width:66ch}
+.tag{
+  display:inline-block;margin:10px 7px 0 0;
+  font-family:"Roboto Condensed",sans-serif;font-weight:700;text-transform:uppercase;
+  font-size:12px;letter-spacing:.09em;
+  border:1px solid var(--line);border-radius:3px;padding:3px 8px;color:var(--muted);
+}
+.tag.act{border-color:var(--orange);color:var(--orange)}
+
+/* ---------- prompt ---------- */
+details.prompt{margin-top:12px;border:1px solid var(--line);border-radius:3px;background:var(--bg-calm)}
+details.prompt summary{
+  cursor:pointer;padding:9px 12px;list-style:none;
+  font-family:"Roboto Condensed",sans-serif;font-weight:700;text-transform:uppercase;
+  font-size:13px;letter-spacing:.1em;color:var(--blue);
+}
+details.prompt summary::-webkit-details-marker{display:none}
+details.prompt summary::before{content:"+ ";font-weight:800}
+details.prompt[open] summary::before{content:"— "}
+details.prompt[open] summary{border-bottom:1px solid var(--line)}
+.prompt-body{padding:14px 12px 12px}
+.prompt-body pre{
+  margin:0 0 12px;white-space:pre-wrap;word-wrap:break-word;
+  font-family:"Golos Text",sans-serif;font-size:15px;line-height:1.55;color:var(--ink-soft);
+}
+
+/* ---------- ribbon ---------- */
+.ribbon{
+  background:var(--dark);color:#fff;border-radius:var(--r);
+  padding:18px clamp(18px,3.4vw,28px);
+  font-family:"Roboto Condensed",sans-serif;font-weight:800;text-transform:uppercase;
+  font-size:clamp(18px,3.4vw,30px);line-height:1.05;letter-spacing:.01em;
+}
+.ribbon i{color:var(--orange);font-style:normal;margin:0 .45em}
+
+/* ---------- foot ---------- */
+.foot{color:var(--ink-soft);font-size:15px;margin:0}
+.foot b{color:var(--ink)}
+
+@media (max-width:560px){
+  .sqnum{width:56px;height:56px}
+  .sqnum span{font-size:16px;left:5px;bottom:3px}
+  .phase-count{width:100%;order:3;padding-top:0}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important}
+}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <p class="kicker">Fomina.Designs · план на 90 днів</p>
+    <h1>Instagram на <span class="box-word">системі</span>, а не на натхненні</h1>
+    <p class="lede">Дорожня карта за розбором Міши Тимочки «Клод + Інста», перекладена під вебдизайн-практику: <b>сайти під ключ для бізнесу, аудиторія — власники, а не дизайнери.</b> Фази не перестрибуємо: кожна наступна спирається на файл, створений у попередній.</p>
+  </header>
+
+  <section class="panel meter">
+    <div class="meter-num"><span id="pct">0</span><sup>%</sup></div>
+    <div class="meter-body">
+      <div class="label">Загальний прогрес</div>
+      <div class="bar"><i id="bar"></i></div>
+      <div class="label"><span id="ratio">0 / 0</span> кроків зроблено</div>
+      <div style="margin-top:16px"><button class="btn ghost" id="reset" type="button">Скинути прогрес</button></div>
+    </div>
+  </section>
+
+  <section class="panel rules">
+    <h2>Чотири правила, без яких не працює</h2>
+    <div class="rules-list">
+      <div class="rule">
+        <div class="numbox">1</div>
+        <p><b>ШІ не замінює експертизу.</b> Він пришвидшує того, хто вже знає, який контент має бути. Якщо стратегії немає в голові — Клод її не вигадає.</p>
+      </div>
+      <div class="rule">
+        <div class="numbox">2</div>
+        <p><b>Усе, що видає Клод — сировина.</b> Відбір робить людина. Зі 100 ідей беремо 5–10, які ви реально знаєте, як розкрити.</p>
+      </div>
+      <div class="rule">
+        <div class="numbox">3</div>
+        <p><b>Не копіюємо чужу естетику там, де є своя.</b> У вас є затверджена дизайн-система — Клод має вчитися на ваших каруселях і ваших текстах, а не на чужих.</p>
+      </div>
+      <div class="rule">
+        <div class="numbox">4</div>
+        <p><b>Говоримо голосом, а не друкуємо.</b> Тридцять хвилин надиктованого контексту дають кращий результат, ніж ідеальний промт на два рядки.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 01 -->
+  <section class="panel phase">
+    <div class="phase-head">
+      <div class="sqnum"><span>01</span></div>
+      <div class="phase-title">
+        <h2>Стратегія блогу</h2>
+        <p class="phase-note">Фундамент. Без цього файлу всі наступні фази будуть про «щось гарненьке», а не про заявки.</p>
+      </div>
+      <div class="phase-count" data-count></div>
+    </div>
+    <div class="tasks">
+
+      <div class="task">
+        <input type="checkbox" class="box" id="t-1-1">
+        <div class="task-body">
+          <label class="task-title" for="t-1-1">Налаштувати голосове введення</label>
+          <p class="task-desc">Aquavoice на комп'ютері або звичайна диктовка в телефоні. Мета — надиктовувати контекст, а не друкувати.</p>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="t-1-2">
+        <div class="task-body">
+          <label class="task-title" for="t-1-2">Попросити 20 питань стратега</label>
+          <p class="task-desc">Це та сама сесія, за яку SMM-агенція бере перший місяць оплати.</p>
+          <details class="prompt">
+            <summary>Промт</summary>
+            <div class="prompt-body">
+<pre>Хочу скласти стратегію свого Instagram. Уяви, що ти досвідчений Instagram-стратег,
+який будує особистий бренд експерта. Постав мені 20 найважливіших питань:
+про що блог, хто аудиторія, що продаємо, які болі аудиторії, чим я відрізняюсь.
+Я відповім голосом, після цього ти зробиш великий чіткий документ:
+бренд-платформа, позиціонування, ядро ЦА, шлях клієнта, продуктова лінійка,
+контент-стратегія, ризики і план на 90 днів. Це серйозний файл — підійди вдумливо.</pre>
+              <button class="btn" data-copy type="button">Копіювати</button>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="t-1-3">
+        <div class="task-body">
+          <label class="task-title" for="t-1-3">Надиктувати відповіді — 30–40 хвилин, не менше</label>
+          <p class="task-desc">Не економити. Розповісти про найсильніший B2B-кейс, про клієнта, для якого зробили повний цикл, про свій ціновий сегмент, про те, чому клієнти кажуть «заявки є, але не ті».</p>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="t-1-4" checked>
+        <div class="task-body">
+          <label class="task-title" for="t-1-4">Докинути в чат усі наявні документи</label>
+          <p class="task-desc">Бриф по цільовій аудиторії, аудит сайту, дизайн-систему, статистику акаунта за весь час, тексти наявних постів-кейсів.</p>
+          <span class="tag act">уже готове</span>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="t-1-5">
+        <div class="task-body">
+          <label class="task-title" for="t-1-5">Дотиснути стратегію діалогом</label>
+          <p class="task-desc">Перша версія завжди загальна. Сперечатись, питати «чому саме так», вимагати конкретики під український ринок і ваш ціновий сегмент.</p>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="t-1-6">
+        <div class="task-body">
+          <label class="task-title" for="t-1-6">Зберегти фінальну стратегію в проєкт</label>
+          <p class="task-desc">Окремий файл у проєкті «Мой сайт и инстаграм» — щоб кожна нова сесія починалась не з нуля.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 02 -->
+  <section class="panel phase">
+    <div class="phase-head">
+      <div class="sqnum"><span>02</span></div>
+      <div class="phase-title">
+        <h2>Упаковка профілю</h2>
+        <p class="phase-note">Людина заходить із рилса на профіль і за три секунди вирішує, підписатись чи ні.</p>
+      </div>
+      <div class="phase-count" data-count></div>
+    </div>
+    <div class="tasks">
+
+      <div class="task">
+        <input type="checkbox" class="box" id="t-2-1">
+        <div class="task-body">
+          <label class="task-title" for="t-2-1">Ім'я профілю та текст шапки</label>
+          <p class="task-desc">Попросити п'ять варіантів, вибрати один. Шапка мовою клієнта: не «Figma → Webflow», а результат — потік заявок і статус. Тон той самий, що на сайті: коротко, великими, на «ви».</p>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="t-2-2">
+        <div class="task-body">
+          <label class="task-title" for="t-2-2">Закріплені сторіс — по болях, а не по розділах</label>
+          <p class="task-desc">Не «Про мене / Послуги / Відгуки», а «Сайт є, заявок нема», «Чому так дорого», «Скільки коштує», «Як ми працюємо».</p>
+          <details class="prompt">
+            <summary>Промт</summary>
+            <div class="prompt-body">
+<pre>Закріпи вийшли занадто базові. Хочу, щоб назви закріпів були по болях клієнта —
+щоб тригерили теми, на які людина хоче клікнути. Дай ще один варіант,
+з урахуванням того, що моя аудиторія — власники бізнесу, які вже платять
+за трафік і мають слабкий шаблонний сайт.</pre>
+              <button class="btn" data-copy type="button">Копіювати</button>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="t-2-3">
+        <div class="task-body">
+          <label class="task-title" for="t-2-3">Аватарка</label>
+          <p class="task-desc">Впізнавана на маленькому колі. Логіка бренду: королівський синій як фон, помаранчевий точково — той самий контраст, що в заставці сайту.</p>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="t-2-4">
+        <div class="task-body">
+          <label class="task-title" for="t-2-4">Обкладинки закріпів у системі бренду</label>
+          <p class="task-desc">Roboto Condensed 800 великими, лінійні іконки 24×24 у квадратній рамці, один домінантний колір на обкладинку. Тут швидше зробити самій у Figma, ніж описувати промтом.</p>
+          <span class="tag">ваша сила</span>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="t-2-5">
+        <div class="task-body">
+          <label class="task-title" for="t-2-5">Привести перші дев'ять постів сітки до одного рівня</label>
+          <p class="task-desc">Прибрати слабкі кейси, додати два-три сильні. Перший екран профілю має бути однорідним за рівнем клієнта — так само, як портфоліо на сайті.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="ribbon">Робіть те, що любите <i>✦</i> а не те, що встигаєте <i>✦</i> Робіть те, що любите</div>
+
+  <!-- 03 -->
+  <section class="panel phase">
+    <div class="phase-head">
+      <div class="sqnum"><span>03</span></div>
+      <div class="phase-title">
+        <h2>Банк ідей: три способи</h2>
+        <p class="phase-note">Три різні механіки. Друга і третя дають найконкретніші ідеї — з них і знімати перші рилси.</p>
+      </div>
+      <div class="phase-count" data-count></div>
+    </div>
+    <div class="tasks">
+
+      <div class="task">
+        <input type="checkbox" class="box" id="t-3-1">
+        <div class="task-body">
+          <label class="task-title" for="t-3-1">Спосіб перший — сто ідей на основі стратегії</label>
+          <p class="task-desc">Розбити на групи: сайти й конверсія · бізнес і клієнти · дизайн-мислення · робота фрілансера. Базовий рівень, багато банального — але це стартовий пул.</p>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="t-3-2">
+        <div class="task-body">
+          <label class="task-title" for="t-3-2">Спосіб другий — ідеї через шлях клієнта</label>
+          <p class="task-desc">Кроки: зрозумів, що сайт застарів → шукає підрядника → боїться переплатити → не розуміє, за що платить → обирає між агенцією і фрілансером → узгоджує дизайн → запускає → чекає заявок.</p>
+          <details class="prompt">
+            <summary>Промт</summary>
+            <div class="prompt-body">
+<pre>Пошукаємо ідеї іншим способом — через шлях клієнта.
+Візьми власника бізнесу, у якого є шаблонний сайт 3-5-річної давності,
+він платить за таргет, але заявки не ті. Його шлях до нового сайту:
+усвідомлення проблеми → пошук підрядника → страх переплатити →
+нерозуміння, за що платить → вибір між агенцією і фрілансером →
+узгодження дизайну → запуск → очікування заявок.
+Доповни кроки, якщо я щось пропустила. Далі напиши по 10-15 питань,
+які стоять перед ним на кожному кроці, і перетвори кожне питання
+на конкретну ідею для рилса.</pre>
+              <button class="btn" data-copy type="button">Копіювати</button>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="t-3-3">
+        <div class="task-body">
+          <label class="task-title" for="t-3-3">Спосіб третій — двадцять болів і двадцять перешкод</label>
+          <p class="task-desc">Біль — проблема («заявки дорогі»). Перешкода — причина, чому не вирішує («думає, що справа в таргетологу, а не в сайті»). Рилс знімає перешкоду.</p>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="t-3-4">
+        <div class="task-body">
+          <label class="task-title" for="t-3-4">Відібрати десять ідей і завести контент-план</label>
+          <p class="task-desc">Критерій: ви знаєте, як це розкрити, і картинка вже є в голові. Решту — в архів до наступного циклу.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 04 -->
+  <section class="panel phase">
+    <div class="phase-head">
+      <div class="sqnum"><span>04</span></div>
+      <div class="phase-title">
+        <h2>Сценарист рилсів як навичка</h2>
+        <p class="phase-note">Одноразова робота на дві-три години, яка потім економить час на кожному рилсі.</p>
+      </div>
+      <div class="phase-count" data-count></div>
+    </div>
+    <div class="tasks">
+
+      <div class="task">
+        <input type="checkbox" class="box" id="t-4-1">
+        <div class="task-body">
+          <label class="task-title" for="t-4-1">Відібрати 10–15 рилсів-орієнтирів</label>
+          <p class="task-desc">Брати не лише блогерів про контент, а й дизайнерів і підрядників, які продають дорого й говорять мовою бізнесу.</p>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="t-4-2">
+        <div class="task-body">
+          <label class="task-title" for="t-4-2">Транскрибувати їх в один файл</label>
+          <p class="task-desc">Посилання на рилс → бот-завантажувач → бот розпізнавання мовлення. Складати в один документ із нумерацією.</p>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="t-4-3">
+        <div class="task-body">
+          <label class="task-title" for="t-4-3">Витягти з них інструкцію</label>
+          <p class="task-desc">Хуки, ритм, довжина речень, структура, повторювані патерни, типові фінали.</p>
+          <details class="prompt">
+            <summary>Промт</summary>
+            <div class="prompt-body">
+<pre>Я скинула тобі багато сценаріїв рилсів. Проаналізуй уважно:
+які хуки використовуються, яка подача, які патерни, довжина речень,
+темп і ритм, наскільки прості конструкції, яка структура рилса —
+з чого починається, що йде далі, чим закінчується.
+Виділи повторювані формати. Далі стань сценаристом, який уміє писати так само,
+і створи максимально детальну інструкцію, як писати сценарії в цьому стилі —
+щоб я могла зберегти її як навичку (skill).</pre>
+              <button class="btn" data-copy type="button">Копіювати</button>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="t-4-4">
+        <div class="task-body">
+          <label class="task-title" for="t-4-4">Зберегти інструкцію як skill</label>
+          <p class="task-desc">Далі цикл короткий: надиктували ідею → «розпиши сценарій за скілом» → правите руками.</p>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="t-4-5">
+        <div class="task-body">
+          <label class="task-title" for="t-4-5">Зняти перші три рилси за цими сценаріями</label>
+          <p class="task-desc">Чорнова версія завжди потребує правок. Її цінність у тому, що не треба починати з порожнього аркуша.</p>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="t-4-6">
+        <div class="task-body">
+          <label class="task-title" for="t-4-6">Через місяць переучити скіл на власних рилсах</label>
+          <p class="task-desc">Кроку немає в уроці, але він ключовий. Коли з'явиться десять своїх рилсів зі статистикою — транскрибувати їх і зробити другу версію скіла, вже вашим голосом.</p>
+          <span class="tag act">важливо</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 05 -->
+  <section class="panel phase">
+    <div class="phase-head">
+      <div class="sqnum"><span>05</span></div>
+      <div class="phase-title">
+        <h2>Візуал і каруселі</h2>
+        <p class="phase-note">Тут логіка уроку розвертається. Автор учить Клода копіювати чужий дизайн, бо свого не має. У вас дизайн-система затверджена — учимо Клода вашій.</p>
+      </div>
+      <div class="phase-count" data-count></div>
+    </div>
+    <div class="tasks">
+
+      <div class="task">
+        <input type="checkbox" class="box" id="t-5-1">
+        <div class="task-body">
+          <label class="task-title" for="t-5-1">Скіл «Каруселі Fomina.Designs» з власної системи</label>
+          <p class="task-desc">Не зі скрінів чужої каруселі, а з вашого файлу дизайн-системи: королівський синій для Instagram, помаранчевий точково, Roboto Condensed 800 великими, Golos Text у тексті, сітка 80 px, проміжок 13 px, скруглення 6 px.</p>
+          <details class="prompt">
+            <summary>Промт</summary>
+            <div class="prompt-body">
+<pre>Скидаю тобі свою затверджену дизайн-систему і скріни моїх каруселей.
+Побудуй на їх основі інструкцію для каруселей Instagram:
+які кольори і в якій пропорції, типографіка й розміри під формат 1080×1350,
+сітка й відступи, роль першого і останнього слайда, логіка послідовності,
+тон текстів. Пам'ятай правило системи: на екрані домінує один колір,
+помаранчевий — лише точково, цифри й результати не вигадуємо.
+Зроби це так, щоб я зберегла як skill і давала тобі лише тему.</pre>
+              <button class="btn" data-copy type="button">Копіювати</button>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="t-5-2">
+        <div class="task-body">
+          <label class="task-title" for="t-5-2">Зібрати першу карусель через скіл і звірити з Figma</label>
+          <p class="task-desc">Чесна перевірка: чи вийшло швидше, ніж зробити руками. Якщо ні — скіл лишається для текстової структури, візуал робите самі.</p>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="t-5-3">
+        <div class="task-body">
+          <label class="task-title" for="t-5-3">Обкладинки рилсів: єдиний шаблон</label>
+          <p class="task-desc">Фіксований шрифт, розмір і положення тексту, змінюється лише фон і тема. Так стрічка тримається купи навіть при 12 рилсах на місяць.</p>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="t-5-4">
+        <div class="task-body">
+          <label class="task-title" for="t-5-4">Створити свій character у Higgsfield</label>
+          <p class="task-desc">Завантажити 20–30 власних фото один раз. Далі кадри з собою генеруються без повторного завантаження.</p>
+          <span class="tag">Higgsfield</span>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="t-5-5">
+        <div class="task-body">
+          <label class="task-title" for="t-5-5">Нагенерувати банк кадрів під обкладинки</label>
+          <p class="task-desc">Робоче місце, макети на екрані, деталі — стримано, у палітрі бренду. Без «Дубай і тачки»: ваша аудиторія купує статус підрядника, а не спосіб життя.</p>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="t-5-6">
+        <div class="task-body">
+          <label class="task-title" for="t-5-6">ШІ-кадри, які неможливо зняти — один-два рилси на місяць</label>
+          <p class="task-desc">Ви це вже вмієте — робили рекламні відео для клієнта з логістики. Тримати як акцент, а не як основу: процес трудомісткий, а фокус — на сайтах.</p>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="t-5-7">
+        <div class="task-body">
+          <label class="task-title" for="t-5-7">Перенести живі елементи сайту в рилси</label>
+          <p class="task-desc">Прелоадер із об'ємним логотипом, піксельний перехід, заливка списку, лічильник — це готові, ні на що не схожі три-п'ять секунд відео. Знімати екран, а не генерувати.</p>
+          <span class="tag act">недооцінений ресурс</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 06 -->
+  <section class="panel phase">
+    <div class="phase-head">
+      <div class="sqnum"><span>06</span></div>
+      <div class="phase-title">
+        <h2>Тексти вашим голосом</h2>
+        <p class="phase-note">В уроці копірайтера навчають на чужому Telegram-каналі. Вам чужий голос не потрібен — потрібен свій, масштабований.</p>
+      </div>
+      <div class="phase-count" data-count></div>
+    </div>
+    <div class="tasks">
+
+      <div class="task">
+        <input type="checkbox" class="box" id="t-6-a" checked>
+        <div class="task-body">
+          <label class="task-title" for="t-6-a">Витягти й очистити архів каналу-орієнтира</label>
+          <p class="task-desc">Кілька сотень постів із експорту Telegram, очищених від розмітки й службових рядків. Файл лежить локально й таким лишається — це чужий контент, у публічний доступ він не йде.</p>
+          <span class="tag act">зроблено</span>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="t-6-b" checked>
+        <div class="task-body">
+          <label class="task-title" for="t-6-b">Зробити скіл «Іронічна байка» українською</label>
+          <p class="task-desc">Стиль розібрано на метрики й прийоми: CAPS-заголовок, сцена замість вступу, речення на 8–10 слів, панч окремим абзацом. Переписано під українську мову, без лайки. Збережено як навичку.</p>
+          <span class="tag act">зроблено</span>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="t-6-1">
+        <div class="task-body">
+          <label class="task-title" for="t-6-1">Зібрати 20–30 своїх текстів</label>
+          <p class="task-desc">Пости, описи кейсів, тексти із сайту, листування з клієнтами, голосові про роботу. Усе, де ви звучите собою. Це друга версія голосу — вже ваша, а не позичена.</p>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="t-6-2">
+        <div class="task-body">
+          <label class="task-title" for="t-6-2">Зробити скіл «Пишу як Fomina»</label>
+          <p class="task-desc">Та сама механіка, що зі сценаристом. У правила скіла обов'язково зашити тон із дизайн-системи: на «ви», без канцеляриту, цифри не вигадуємо.</p>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="t-6-3">
+        <div class="task-body">
+          <label class="task-title" for="t-6-3">Прогнати три пости через скіл і чесно оцінити</label>
+          <p class="task-desc">Якщо текст звучить не вами — скіл треба доучувати, а не змушувати себе публікувати.</p>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="t-6-4">
+        <div class="task-body">
+          <label class="task-title" for="t-6-4">Вирішити долю Telegram</label>
+          <p class="task-desc">Окремий канал має сенс лише тоді, коли Instagram уже дає стабільний потік. Інакше — тільки посилання на особистий контакт.</p>
+          <span class="tag">рішення</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 07 -->
+  <section class="panel phase">
+    <div class="phase-head">
+      <div class="sqnum"><span>07</span></div>
+      <div class="phase-title">
+        <h2>Система, аналітика, ритм</h2>
+        <p class="phase-note">Те, що перетворює разовий сплеск на потік клієнтів. При 10–15 годинах на тиждень це реально.</p>
+      </div>
+      <div class="phase-count" data-count></div>
+    </div>
+    <div class="tasks">
+
+      <div class="task">
+        <input type="checkbox" class="box" id="t-7-1">
+        <div class="task-body">
+          <label class="task-title" for="t-7-1">Завести проєкт із постійною інструкцією</label>
+          <p class="task-desc">У базі: стратегія, бриф по ЦА, дизайн-система, скіли. В інструкції — хто аудиторія, що продаємо і чого не робимо: не вчимо дизайнерів і не пишемо для дизайнерів.</p>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="t-7-2">
+        <div class="task-body">
+          <label class="task-title" for="t-7-2">Зафіксувати тижневий ритм</label>
+          <p class="task-desc">Орієнтир: три рилси, одна карусель, серія сторіс. Один день на знімання блоком, один — на монтаж і публікації.</p>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="t-7-3">
+        <div class="task-body">
+          <label class="task-title" for="t-7-3">Щомісяця розбирати статистику з Клодом</label>
+          <p class="task-desc">Що дало підписників, що дало збереження, що дало звернення в директ. Три різні метрики — три різні висновки.</p>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="t-7-4">
+        <div class="task-body">
+          <label class="task-title" for="t-7-4">Розібрати 10–15 конкурентів у ніші</label>
+          <p class="task-desc">Українські вебдизайн-студії та дизайнери з дорогим чеком: їхні найпопулярніші пости, формати, як вони говорять про ціну.</p>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="t-7-5">
+        <div class="task-body">
+          <label class="task-title" for="t-7-5">Звести Instagram і сайт в одну воронку</label>
+          <p class="task-desc">Рилс → профіль → посилання → квіз → заявка. Пройти цей шлях самій, як клієнт: чи є з головної вхід у квіз і чи справді доходить заявка з форми. Будь-який розрив тут означає, що трафік з Instagram витікає в нікуди.</p>
+          <span class="tag act">перевірити першим</span>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="t-7-6">
+        <div class="task-body">
+          <label class="task-title" for="t-7-6">Ревізія через 90 днів</label>
+          <p class="task-desc">Що справді зекономило час, а що виявилось грою в автоматизацію. Перше залишаємо, друге викидаємо.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <p class="foot">Методика — розбір <b>«Клод + Інста»</b> Міши Тимочки, дванадцять сценаріїв використання. Тут вони перекладені під Fomina.Designs і пересортовані: блок YouTube і тайм-кодів прибрано як нерелевантний, натомість додано переучування скілів на власному матеріалі, використання анімацій сайту як відеоматеріалу та зв'язку з квізом.</p>
+
+  <p class="foot" style="margin-top:-4px">Позначки зберігаються у браузері цього пристрою. На іншому комп'ютері чи телефоні сторінка відкриється з початковим станом — щоб прогрес синхронізувався між пристроями, потрібен бекенд, а не статична сторінка. Оновлено 15.09.2026.</p>
+
+</div>
+
+<script>
+(function(){
+  var KEY = "fd-ig-roadmap-v1";
+  var boxes = Array.prototype.slice.call(document.querySelectorAll(".box"));
+  var bar = document.getElementById("bar");
+  var pct = document.getElementById("pct");
+  var ratio = document.getElementById("ratio");
+
+  function load(){
+    try{ return JSON.parse(localStorage.getItem(KEY) || "{}") || {}; }
+    catch(e){ return {}; }
+  }
+  function save(state){
+    try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){}
+  }
+
+  var state = load();
+  var touched = false;
+  boxes.forEach(function(b){
+    if(Object.prototype.hasOwnProperty.call(state, b.id)){
+      b.checked = !!state[b.id];
+    }else{
+      state[b.id] = b.checked;   // перший візит: беремо позначки з розмітки
+      touched = true;
+    }
+  });
+  if(touched) save(state);
+
+  function render(){
+    var done = boxes.filter(function(b){ return b.checked; }).length;
+    var total = boxes.length;
+    var p = total ? Math.round(done / total * 100) : 0;
+    bar.style.width = p + "%";
+    pct.textContent = p;
+    ratio.textContent = done + " / " + total;
+
+    document.querySelectorAll(".phase").forEach(function(ph){
+      var local = Array.prototype.slice.call(ph.querySelectorAll(".box"));
+      var d = local.filter(function(b){ return b.checked; }).length;
+      var el = ph.querySelector("[data-count]");
+      if(el) el.textContent = d + " / " + local.length;
+    });
+  }
+
+  boxes.forEach(function(b){
+    b.addEventListener("change", function(){
+      state[b.id] = b.checked;
+      save(state);
+      render();
+    });
+  });
+
+  document.getElementById("reset").addEventListener("click", function(){
+    state = {};
+    boxes.forEach(function(b){ b.checked = false; state[b.id] = false; });
+    save(state);
+    render();
+  });
+
+  document.querySelectorAll("[data-copy]").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      var pre = btn.parentNode.querySelector("pre");
+      if(!pre) return;
+      var ok = function(){ btn.textContent = "Скопійовано"; setTimeout(function(){ btn.textContent = "Копіювати"; }, 1600); };
+      try{
+        if(navigator.clipboard && navigator.clipboard.writeText){
+          navigator.clipboard.writeText(pre.textContent).then(ok, function(){ btn.textContent = "Виділіть вручну"; });
+          return;
+        }
+      }catch(e){}
+      btn.textContent = "Виділіть вручну";
+    });
+  });
+
+  render();
+})();
+</script>
+
+</body>
+</html>
