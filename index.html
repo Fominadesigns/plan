@@ -63,6 +63,25 @@
 
 *{box-sizing:border-box}
 
+/* ---------- перемикач списків ---------- */
+.tabs{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap)}
+.tab{
+  appearance:none;-webkit-appearance:none;cursor:pointer;text-align:left;
+  background:var(--panel);color:var(--ink);
+  border:1px solid var(--line);border-radius:var(--r);
+  padding:14px 16px;font-family:"Golos Text",system-ui,sans-serif;font-size:15px;
+}
+.tab b{
+  display:block;font-family:"Roboto Condensed","Golos Text",sans-serif;
+  font-weight:800;text-transform:uppercase;font-size:19px;line-height:.95;letter-spacing:.005em;
+}
+.tab span{display:block;color:var(--muted);font-size:13px;margin-top:5px}
+.tab[aria-selected="true"]{background:var(--blue);color:var(--on-blue);border-color:var(--blue)}
+.tab[aria-selected="true"] span{color:rgba(255,255,255,.72)}
+.tab:focus-visible{outline:2px solid var(--orange);outline-offset:2px}
+@media (max-width:560px){.tabs{grid-template-columns:1fr}}
+
+
 body{
   background-color:var(--bg);
   background-image:
@@ -261,8 +280,20 @@ details.prompt[open] summary{border-bottom:1px solid var(--line)}
   <header class="hero">
     <p class="kicker">Fomina.Designs · план на 90 днів</p>
     <h1>Instagram на <span class="box-word">системі</span>, а не на натхненні</h1>
-    <p class="lede">Дорожня карта за розбором Міши Тимочки «Клод + Інста», перекладена під вебдизайн-практику: <b>сайти під ключ для бізнесу, аудиторія — власники, а не дизайнери.</b> Фази не перестрибуємо: кожна наступна спирається на файл, створений у попередній.</p>
+    <p class="lede" data-lede="roadmap">Дорожня карта за розбором Міши Тимочки «Клод + Інста», перекладена під вебдизайн-практику: <b>сайти під ключ для бізнесу, аудиторія — власники, а не дизайнери.</b> Фази не перестрибуємо: кожна наступна спирається на файл, створений у попередній.</p>
+    <p class="lede" data-lede="strategy" hidden>Стратегія особистого бренду: <b>15 років у продажах і логістиці — тому будую сайти як систему під заявки, а не як портфоліо для себе.</b> Головна мета — два-три платні проєкти, а не підписники. Один канал, пʼять годин на тиждень.</p>
   </header>
+
+  <div class="tabs" role="tablist" aria-label="Перемикач чек-лістів">
+    <button class="tab" type="button" role="tab" id="tab-roadmap" aria-controls="view-roadmap" aria-selected="true">
+      <b>Дорожня карта</b>
+      <span>Система Instagram за розбором Міши Тимочки · 7 фаз</span>
+    </button>
+    <button class="tab" type="button" role="tab" id="tab-strategy" aria-controls="view-strategy" aria-selected="false">
+      <b>Стратегія бренду</b>
+      <span>Позиціонування й план на 90 днів · вересень 2026</span>
+    </button>
+  </div>
 
   <section class="panel meter">
     <div class="meter-num"><span id="pct">0</span><sup>%</sup></div>
@@ -273,6 +304,8 @@ details.prompt[open] summary{border-bottom:1px solid var(--line)}
       <div style="margin-top:16px"><button class="btn ghost" id="reset" type="button">Скинути прогрес</button></div>
     </div>
   </section>
+
+  <div class="view" id="view-roadmap">
 
   <section class="panel rules">
     <h2>Чотири правила, без яких не працює</h2>
@@ -309,7 +342,7 @@ details.prompt[open] summary{border-bottom:1px solid var(--line)}
     <div class="tasks">
 
       <div class="task">
-        <input type="checkbox" class="box" id="t-1-1">
+        <input type="checkbox" class="box" id="t-1-1" checked>
         <div class="task-body">
           <label class="task-title" for="t-1-1">Налаштувати голосове введення</label>
           <p class="task-desc">Aquavoice на комп'ютері або звичайна диктовка в телефоні. Мета — надиктовувати контекст, а не друкувати.</p>
@@ -317,7 +350,7 @@ details.prompt[open] summary{border-bottom:1px solid var(--line)}
       </div>
 
       <div class="task">
-        <input type="checkbox" class="box" id="t-1-2">
+        <input type="checkbox" class="box" id="t-1-2" checked>
         <div class="task-body">
           <label class="task-title" for="t-1-2">Попросити 20 питань стратега</label>
           <p class="task-desc">Це та сама сесія, за яку SMM-агенція бере перший місяць оплати.</p>
@@ -337,7 +370,7 @@ details.prompt[open] summary{border-bottom:1px solid var(--line)}
       </div>
 
       <div class="task">
-        <input type="checkbox" class="box" id="t-1-3">
+        <input type="checkbox" class="box" id="t-1-3" checked>
         <div class="task-body">
           <label class="task-title" for="t-1-3">Надиктувати відповіді — 30–40 хвилин, не менше</label>
           <p class="task-desc">Не економити. Розповісти про найсильніший B2B-кейс, про клієнта, для якого зробили повний цикл, про свій ціновий сегмент, про те, чому клієнти кажуть «заявки є, але не ті».</p>
@@ -354,7 +387,7 @@ details.prompt[open] summary{border-bottom:1px solid var(--line)}
       </div>
 
       <div class="task">
-        <input type="checkbox" class="box" id="t-1-5">
+        <input type="checkbox" class="box" id="t-1-5" checked>
         <div class="task-body">
           <label class="task-title" for="t-1-5">Дотиснути стратегію діалогом</label>
           <p class="task-desc">Перша версія завжди загальна. Сперечатись, питати «чому саме так», вимагати конкретики під український ринок і ваш ціновий сегмент.</p>
@@ -629,7 +662,7 @@ details.prompt[open] summary{border-bottom:1px solid var(--line)}
       </div>
 
       <div class="task">
-        <input type="checkbox" class="box" id="t-5-4">
+        <input type="checkbox" class="box" id="t-5-4" checked>
         <div class="task-body">
           <label class="task-title" for="t-5-4">Створити свій character у Higgsfield</label>
           <p class="task-desc">Завантажити 20–30 власних фото один раз. Далі кадри з собою генеруються без повторного завантаження.</p>
@@ -720,7 +753,7 @@ details.prompt[open] summary{border-bottom:1px solid var(--line)}
       </div>
 
       <div class="task">
-        <input type="checkbox" class="box" id="t-6-4">
+        <input type="checkbox" class="box" id="t-6-4" checked>
         <div class="task-body">
           <label class="task-title" for="t-6-4">Вирішити долю Telegram</label>
           <p class="task-desc">Окремий канал має сенс лише тоді, коли Instagram уже дає стабільний потік. Інакше — тільки посилання на особистий контакт.</p>
@@ -795,7 +828,453 @@ details.prompt[open] summary{border-bottom:1px solid var(--line)}
     </div>
   </section>
 
-  <p class="foot">Методика — розбір <b>«Клод + Інста»</b> Міши Тимочки, дванадцять сценаріїв використання. Тут вони перекладені під Fomina.Designs і пересортовані: блок YouTube і тайм-кодів прибрано як нерелевантний, натомість додано переучування скілів на власному матеріалі, використання анімацій сайту як відеоматеріалу та зв'язку з квізом.</p>
+  </div><!-- /view-roadmap -->
+
+  <div class="view" id="view-strategy" hidden>
+
+  <section class="panel rules">
+    <h2>На чому стоїть бренд</h2>
+    <p class="phase-note" style="margin-bottom:18px">15 років продавала — полістирол, вино, дитяче харчування, морські перевезення. Шукала клієнтів з нуля, вибивала оплати, вела касу й бухгалтерію, розбудовувала філіал. Знаю, як виглядає лійка зсередини, коли за кожну заявку платиш своїми грошима. Тому не малюю картинку — будую систему.</p>
+    <div class="rules-list">
+      <div class="rule">
+        <div class="numbox">1</div>
+        <p><b>Я була на твоєму боці столу.</b> Продажі, логістика, ЗЕД, каса, 1С. Звідси все про заявки, ціну, заперечення і «клієнти не ті».</p>
+      </div>
+      <div class="rule">
+        <div class="numbox">2</div>
+        <p><b>Сайт — це конструкція.</b> Логіка шляху клієнта перед візуалом. Звідси розбори структури й лід-магніти.</p>
+      </div>
+      <div class="rule">
+        <div class="numbox">3</div>
+        <p><b>Я не зупиняюсь на сайті.</b> Telegram-застосунок, CRM, автоматизація бронювань — замість підписки за $50 на місяць.</p>
+      </div>
+      <div class="rule">
+        <div class="numbox">4</div>
+        <p><b>Немає контенту — не проблема.</b> Для CLG був лише логотип: далі шрифти, кольори, стилістика, наповнення Instagram і згенеровані рилси з нуля.</p>
+      </div>
+    </div>
+    <p class="foot" style="margin-top:20px">Мета 90 днів — <b>2–3 платні проєкти</b>, не підписники. Читачі 400–600, платних розборів 5–8. Норма: 5 годин на тиждень, 1 пост, сторіс 3–4 дні.</p>
+  </section>
+
+  <section class="panel phase">
+    <div class="phase-head">
+      <div class="sqnum"><span>01</span></div>
+      <div class="phase-title">
+        <h2>Упаковка</h2>
+        <p class="phase-note">Тижні 1–3. Профіль і сайт витримують перевірку, коли на них заходять по рекомендації.</p>
+      </div>
+      <div class="phase-count" data-count></div>
+    </div>
+    <div class="tasks">
+
+      <div class="task">
+        <input type="checkbox" class="box" id="s-1-01">
+        <div class="task-body">
+          <label class="task-title" for="s-1-01">Переписати шапку профілю</label>
+          <p class="task-desc">Зараз «Сайти · банери · креативи · презентації» — перелік послуг універсала. Замінити на результат: система під заявки плюс 15 років у продажах.</p>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="s-1-02">
+        <div class="task-body">
+          <label class="task-title" for="s-1-02">Замінити посилання в шапці</label>
+          <p class="task-desc">Веде на fomina-designs.webflow.io замість робочого сайту.</p>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="s-1-03">
+        <div class="task-body">
+          <label class="task-title" for="s-1-03">Полагодити навігацію сайту</label>
+          <p class="task-desc">Пункти «Про мене», «Ціни», «Алгоритм роботи» — усі href="#". Додати посилання на квіз з головної: зараз його немає ніде.</p>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="s-1-04">
+        <div class="task-body">
+          <label class="task-title" for="s-1-04">Додати на сайт розділ з цінами</label>
+          <p class="task-desc">Вилка «від». Без неї дорогий клієнт відсіює першим — він шукає підтвердження рівня.</p>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="s-1-05">
+        <div class="task-body">
+          <label class="task-title" for="s-1-05">Технічний борг сайту</label>
+          <p class="task-desc">meta description, lang="uk" замість en, стиснути CLG011.png (1,3 МБ), виправити «Алгоитм роботи».</p>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="s-1-06">
+        <div class="task-body">
+          <label class="task-title" for="s-1-06">Підключити форму квізу до бекенду</label>
+          <p class="task-desc">Нативна Webflow-форма без action — заявки нікуди не йдуть.</p>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="s-1-07">
+        <div class="task-body">
+          <label class="task-title" for="s-1-07">Зібрати чек-лист «12 місць, де сайт втрачає заявки»</label>
+          <p class="task-desc">Головний лід-магніт: користь клієнту без мене. Квіз лишається другим кроком, для тих, хто вже готовий говорити.</p>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="s-1-08">
+        <div class="task-body">
+          <label class="task-title" for="s-1-08">Оформити закріплені сторіс</label>
+          <p class="task-desc">Кейси · Як я працюю · Ціни · Розбори · Про мене.</p>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="s-1-09">
+        <div class="task-body">
+          <label class="task-title" for="s-1-09">Порахувати дві цифри по Темпу Дніпра</label>
+          <p class="task-desc">Хвилини на одну консультацію в Telegram × звернень на тиждень = зекономлені години на місяць. Єдиний чесний результат у цифрах.</p>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="s-1-10">
+        <div class="task-body">
+          <label class="task-title" for="s-1-10">Упакувати кейс Темп Дніпра</label>
+          <p class="task-desc">Сайт + CRM + застосунок. Обіцянка ніші: сайт, який працює замість менеджера.</p>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="s-1-11">
+        <div class="task-body">
+          <label class="task-title" for="s-1-11">Упакувати кейс CLG як «бренд з нуля»</label>
+          <p class="task-desc">Був лише логотип. Без обіцянок у заявках: сайт оплачений, але не запущений.</p>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="s-1-12">
+        <div class="task-body">
+          <label class="task-title" for="s-1-12">Отримати дозвіл Ілля на кейс</label>
+          <p class="task-desc">Зокрема на згадку причини, чому сайт не задеплоїли — страх втратити видачу в Google.</p>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="s-1-13">
+        <div class="task-body">
+          <label class="task-title" for="s-1-13">Почистити портфоліо</label>
+          <p class="task-desc">Прибрати непрофільні кейси, замінити посилання IBP на viktoriaibp.com.</p>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="s-1-14">
+        <div class="task-body">
+          <label class="task-title" for="s-1-14">Сформулювати оффер розбору</label>
+          <p class="task-desc">3–5 тис. грн: сайт + дзвінок 60 хв + документ. Сума зараховується в чек проєкту.</p>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="s-1-15">
+        <div class="task-body">
+          <label class="task-title" for="s-1-15">Пост: хто я і чому 15 років продажів важливіші за диплом дизайнера</label>
+          <p class="task-desc"></p>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="s-1-16">
+        <div class="task-body">
+          <label class="task-title" for="s-1-16">Пост: чому я не обіцяю +300% заявок</label>
+          <p class="task-desc">Довіра рівня, якого в ніші майже немає.</p>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="s-1-17">
+        <div class="task-body">
+          <label class="task-title" for="s-1-17">Пост: різниця між сайтом за 5 і за 40 тисяч</label>
+          <p class="task-desc">Проти шаблону за дорого, виданого за авторську роботу.</p>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="s-1-18">
+        <div class="task-body">
+          <label class="task-title" for="s-1-18">Пост: кейс Темп Дніпра</label>
+          <p class="task-desc"></p>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="s-1-19">
+        <div class="task-body">
+          <label class="task-title" for="s-1-19">Пост: «у нас немає контенту» — історія CLG</label>
+          <p class="task-desc"></p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="panel phase">
+    <div class="phase-head">
+      <div class="sqnum"><span>02</span></div>
+      <div class="phase-title">
+        <h2>Щотижнева норма</h2>
+        <p class="phase-note">Тижні 4–13. Пʼять годин: 2 год пост, 1 год сторіс, 1,5 год ручна робота, 0,5 год цифри.</p>
+      </div>
+      <div class="phase-count" data-count></div>
+    </div>
+    <div class="tasks">
+
+      <div class="task">
+        <input type="checkbox" class="box" id="s-w-1">
+        <div class="task-body">
+          <label class="task-title" for="s-w-1">1 пост на тиждень</label>
+          <p class="task-desc">Чергуємо: розбір → мій шлях → кейс → провал. Два поста при 80 читачах не дадуть удвічі більше, а вигорання дадуть.</p>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="s-w-2">
+        <div class="task-body">
+          <label class="task-title" for="s-w-2">Сторіс 3–4 дні</label>
+          <p class="task-desc">З них один день — живе обличчя й справжній голос. Аватар лишаємо для рилсів і полірованого контенту.</p>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="s-w-3">
+        <div class="task-body">
+          <label class="task-title" for="s-w-3">30 нових акаунтів у нішах</label>
+          <p class="task-desc">Підписка плюс осмислений коментар. Не «круто», а по суті.</p>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="s-w-4">
+        <div class="task-body">
+          <label class="task-title" for="s-w-4">5 DM власникам бізнесу</label>
+          <p class="task-desc">Конкретне спостереження про їхній сайт. Без продажу в першому повідомленні.</p>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="s-w-5">
+        <div class="task-body">
+          <label class="task-title" for="s-w-5">1 публічний розбір чужого сайту</label>
+          <p class="task-desc">Одночасно контент, доказ і причина, щоб власник відповів.</p>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="s-w-6">
+        <div class="task-body">
+          <label class="task-title" for="s-w-6">Пʼятниця: цифри</label>
+          <p class="task-desc">Збереження, переходи в профіль, DM. Зараз конверсія з охвату в профіль — менше 1%.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="panel phase">
+    <div class="phase-head">
+      <div class="sqnum"><span>03</span></div>
+      <div class="phase-title">
+        <h2>Ручний набір і перші розбори</h2>
+        <p class="phase-note">Тижні 4–8. Плюс 150–200 правильних читачів, 3–5 платних розборів, перша заявка на сайт.</p>
+      </div>
+      <div class="phase-count" data-count></div>
+    </div>
+    <div class="tasks">
+
+      <div class="task">
+        <input type="checkbox" class="box" id="s-2-01">
+        <div class="task-body">
+          <label class="task-title" for="s-2-01">Запустити оффер розбору</label>
+          <p class="task-desc">Тиждень 4. Оголосити постом.</p>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="s-2-02">
+        <div class="task-body">
+          <label class="task-title" for="s-2-02">Підключити LinkedIn</label>
+          <p class="task-desc">Тиждень 5. Режим репосту без вигадування нового — там CEO і CFO виробничих холдингів, аудиторія кейсу IBP. 20 хвилин на тиждень.</p>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="s-2-03">
+        <div class="task-body">
+          <label class="task-title" for="s-2-03">Пост про аватар</label>
+          <p class="task-desc">Тиждень 5. Оголошуємо відкрито: аватар, про який не сказано, читається як обман; аватар, про який сказано, — як компетенція.</p>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="s-2-04">
+        <div class="task-body">
+          <label class="task-title" for="s-2-04">Провести перші два розбори</label>
+          <p class="task-desc">Тиждень 6. Зробити з них пост, анонімно.</p>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="s-2-05">
+        <div class="task-body">
+          <label class="task-title" for="s-2-05">Припинити колаборації з особистим акаунтом</label>
+          <p class="task-desc">300–700 переглядів при 1 переході в профіль. Замінити на сторіс із конкретною причиною і посиланням на пост.</p>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="s-2-06">
+        <div class="task-body">
+          <label class="task-title" for="s-2-06">Ревізія контенту</label>
+          <p class="task-desc">Тиждень 8. Які три поста дали найбільше збережень і переходів — саме вони підуть у таргет.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="panel phase">
+    <div class="phase-head">
+      <div class="sqnum"><span>04</span></div>
+      <div class="phase-title">
+        <h2>Таргет і закриття</h2>
+        <p class="phase-note">Тижні 9–13. Два-три підписані проєкти.</p>
+      </div>
+      <div class="phase-count" data-count></div>
+    </div>
+    <div class="tasks">
+
+      <div class="task">
+        <input type="checkbox" class="box" id="s-3-01">
+        <div class="task-body">
+          <label class="task-title" for="s-3-01">Визначити бюджет на таргет</label>
+          <p class="task-desc"></p>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="s-3-02">
+        <div class="task-body">
+          <label class="task-title" for="s-3-02">Запустити таргет</label>
+          <p class="task-desc">Тиждень 9, не раніше. Тільки на пости, що вже дали збереження й переходи органічно. Цілі: підписка і чек-лист.</p>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="s-3-03">
+        <div class="task-body">
+          <label class="task-title" for="s-3-03">Випустити два кейси з нових розборів</label>
+          <p class="task-desc"></p>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="s-3-04">
+        <div class="task-body">
+          <label class="task-title" for="s-3-04">Пост: як виглядає мій процес по кроках</label>
+          <p class="task-desc">Тиждень 10. Знімає заперечення «не розумію, за що плачу».</p>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="s-3-05">
+        <div class="task-body">
+          <label class="task-title" for="s-3-05">Серія сторіс «розбір у прямому ефірі»</label>
+          <p class="task-desc">Тиждень 11. Беремо сайт із DM і розбираємо.</p>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="s-3-06">
+        <div class="task-body">
+          <label class="task-title" for="s-3-06">Підсумок 90 днів</label>
+          <p class="task-desc">Тиждень 13. Рішення про Telegram-канал і англомовний напрям.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="panel phase">
+    <div class="phase-head">
+      <div class="sqnum"><span>05</span></div>
+      <div class="phase-title">
+        <h2>Вирішити окремо</h2>
+        <p class="phase-note">Без дедлайну. Питання, які блокують частини плану.</p>
+      </div>
+      <div class="phase-count" data-count></div>
+    </div>
+    <div class="tasks">
+
+      <div class="task">
+        <input type="checkbox" class="box" id="s-0-01">
+        <div class="task-body">
+          <label class="task-title" for="s-0-01">Бʼюті-майстри, репетитори, дрібний роздріб</label>
+          <p class="task-desc">У брифі вони в «не наша аудиторія», в інтервʼю не відсіяні. До майстра-одиночки й до власника клініки говорять різними словами — треба вирішити.</p>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="s-0-02">
+        <div class="task-body">
+          <label class="task-title" for="s-0-02">Модель супроводу за підписку</label>
+          <p class="task-desc">Що входить, скільки коштує. Це єдина позиція з повторюваним доходом.</p>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="s-0-03">
+        <div class="task-body">
+          <label class="task-title" for="s-0-03">Доробити довідник логіста для CLG</label>
+          <p class="task-desc">Шаблон лід-магнітів під інші ніші: користь про роботу клієнта, а не про мою послугу.</p>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="s-0-04">
+        <div class="task-body">
+          <label class="task-title" for="s-0-04">Конкурентний аналіз</label>
+          <p class="task-desc">Не робили. Вплине на позиціонування точковими правками, не на фундамент.</p>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="s-0-05">
+        <div class="task-body">
+          <label class="task-title" for="s-0-05">Заміряти пропускну здатність</label>
+          <p class="task-desc">Норма 2 проєкти паралельно — припущення. Перевірити на першому перетині.</p>
+        </div>
+      </div>
+
+      <div class="task">
+        <input type="checkbox" class="box" id="s-0-06">
+        <div class="task-body">
+          <label class="task-title" for="s-0-06">Заміряти, де зникає клієнт</label>
+          <p class="task-desc">Ціна, ТЗ чи «я подумаю». Усі три клієнти були теплі — статистики немає. Фіксувати з першого ліда.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  </div><!-- /view-strategy -->
+
+  <p class="foot" data-foot="strategy">Стратегія складена 15.09.2026 на основі глибинного інтервʼю, статистики акаунта, аудиту сайту та брифу по ЦА. Повний текст — у файлі <b>fomina-designs-instagram-strategiya.md</b> у проєкті. Стоп-лист: дані клієнтів без дозволу, локації й безпека, гроші напоказ, волонтерство як рубрика, напівпоказ родини.</p>
+
+  <p class="foot" data-foot="roadmap">Методика — розбір <b>«Клод + Інста»</b> Міши Тимочки, дванадцять сценаріїв використання. Тут вони перекладені під Fomina.Designs і пересортовані: блок YouTube і тайм-кодів прибрано як нерелевантний, натомість додано переучування скілів на власному матеріалі, використання анімацій сайту як відеоматеріалу та зв'язку з квізом.</p>
 
   <p class="foot" style="margin-top:-4px">Позначки зберігаються у браузері цього пристрою. На іншому комп'ютері чи телефоні сторінка відкриється з початковим станом — щоб прогрес синхронізувався між пристроями, потрібен бекенд, а не статична сторінка. Оновлено 15.09.2026.</p>
 
@@ -805,6 +1284,12 @@ details.prompt[open] summary{border-bottom:1px solid var(--line)}
 (function(){
   var KEY = "fd-ig-roadmap-v1";
   var boxes = Array.prototype.slice.call(document.querySelectorAll(".box"));
+  var views = { roadmap: document.getElementById("view-roadmap"),
+                strategy: document.getElementById("view-strategy") };
+  var current = "roadmap";
+  function activeBoxes(){
+    return Array.prototype.slice.call(views[current].querySelectorAll(".box"));
+  }
   var bar = document.getElementById("bar");
   var pct = document.getElementById("pct");
   var ratio = document.getElementById("ratio");
@@ -830,8 +1315,9 @@ details.prompt[open] summary{border-bottom:1px solid var(--line)}
   if(touched) save(state);
 
   function render(){
-    var done = boxes.filter(function(b){ return b.checked; }).length;
-    var total = boxes.length;
+    var scope = activeBoxes();
+    var done = scope.filter(function(b){ return b.checked; }).length;
+    var total = scope.length;
     var p = total ? Math.round(done / total * 100) : 0;
     bar.style.width = p + "%";
     pct.textContent = p;
@@ -854,8 +1340,8 @@ details.prompt[open] summary{border-bottom:1px solid var(--line)}
   });
 
   document.getElementById("reset").addEventListener("click", function(){
-    state = {};
-    boxes.forEach(function(b){ b.checked = false; state[b.id] = false; });
+    if(!confirm("Зняти всі позначки в цьому списку?")) return;
+    activeBoxes().forEach(function(b){ b.checked = false; state[b.id] = false; });
     save(state);
     render();
   });
@@ -875,7 +1361,27 @@ details.prompt[open] summary{border-bottom:1px solid var(--line)}
     });
   });
 
-  render();
+  // ---------- перемикач списків ----------
+  function switchTo(key){
+    current = key;
+    Object.keys(views).forEach(function(k){ views[k].hidden = (k !== key); });
+    document.getElementById("tab-roadmap").setAttribute("aria-selected", key === "roadmap");
+    document.getElementById("tab-strategy").setAttribute("aria-selected", key === "strategy");
+    document.querySelectorAll("[data-foot]").forEach(function(p){
+      p.hidden = (p.getAttribute("data-foot") !== key);
+    });
+    document.querySelectorAll("[data-lede]").forEach(function(p){
+      p.hidden = (p.getAttribute("data-lede") !== key);
+    });
+    try{ localStorage.setItem(KEY + "-tab", key); }catch(e){}
+    render();
+  }
+  document.getElementById("tab-roadmap").addEventListener("click", function(){ switchTo("roadmap"); });
+  document.getElementById("tab-strategy").addEventListener("click", function(){ switchTo("strategy"); });
+
+  var saved = "roadmap";
+  try{ saved = localStorage.getItem(KEY + "-tab") || "roadmap"; }catch(e){}
+  switchTo(views[saved] ? saved : "roadmap");
 })();
 </script>
 
