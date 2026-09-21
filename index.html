@@ -15,6 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700;800&family=Golos+Text:wght@400;500;600;700&display=swap">
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
 
 <style>
 :root{
@@ -273,6 +274,8 @@ details.prompt[open] summary{border-bottom:1px solid var(--line)}
 }
 </style>
 
+<link rel="stylesheet" href="app.css?v=1">
+
 </head>
 <body>
 <div class="wrap">
@@ -292,6 +295,10 @@ details.prompt[open] summary{border-bottom:1px solid var(--line)}
     <button class="tab" type="button" role="tab" id="tab-strategy" aria-controls="view-strategy" aria-selected="false">
       <b>Стратегія бренду</b>
       <span>Позиціонування й план на 90 днів · вересень 2026</span>
+    </button>
+    <button class="tab" type="button" role="tab" id="tab-day" aria-controls="view-day" aria-selected="false">
+      <b>Справи</b>
+      <span>Що робимо сьогодні й&nbsp;завтра · побут і&nbsp;план</span>
     </button>
   </div>
 
@@ -1313,121 +1320,17 @@ details.prompt[open] summary{border-bottom:1px solid var(--line)}
 
   </div><!-- /view-strategy -->
 
+  <div class="view" id="view-day" hidden></div><!-- наповнює app.js -->
+
   <p class="foot" data-foot="strategy">Стратегія складена 15.09.2026 на основі глибинного інтервʼю, статистики акаунта, аудиту сайту та брифу по ЦА. Повний текст — у файлі <b>fomina-designs-instagram-strategiya.md</b> у проєкті. Стоп-лист: дані клієнтів без дозволу, локації й безпека, гроші напоказ, волонтерство як рубрика, напівпоказ родини.</p>
 
   <p class="foot" data-foot="roadmap">Методика — розбір <b>«Клод + Інста»</b> Міши Тимочки, дванадцять сценаріїв використання. Тут вони перекладені під Fomina.Designs і пересортовані: блок YouTube і тайм-кодів прибрано як нерелевантний, натомість додано переучування скілів на власному матеріалі, використання анімацій сайту як відеоматеріалу та зв'язку з квізом.</p>
 
-  <p class="foot" style="margin-top:-4px">Позначки зберігаються у браузері цього пристрою. На іншому комп'ютері чи телефоні сторінка відкриється з початковим станом — щоб прогрес синхронізувався між пристроями, потрібен бекенд, а не статична сторінка. Оновлено 15.09.2026.</p>
+  <p class="foot" style="margin-top:-4px">Усередині Telegram позначки й&nbsp;справи зберігаються у&nbsp;хмарі Telegram — те саме видно і&nbsp;на&nbsp;телефоні, і&nbsp;на&nbsp;комп'ютері. У&nbsp;звичайному браузері сторінка працює так само, але позначки лишаються тільки в&nbsp;цьому браузері. Оновлено 22.09.2026.</p>
 
 </div>
 
-<script>
-(function(){
-  var KEY = "fd-ig-roadmap-v1";
-  var boxes = Array.prototype.slice.call(document.querySelectorAll(".box"));
-  var views = { roadmap: document.getElementById("view-roadmap"),
-                strategy: document.getElementById("view-strategy") };
-  var current = "roadmap";
-  function activeBoxes(){
-    return Array.prototype.slice.call(views[current].querySelectorAll(".box"));
-  }
-  var bar = document.getElementById("bar");
-  var pct = document.getElementById("pct");
-  var ratio = document.getElementById("ratio");
-
-  function load(){
-    try{ return JSON.parse(localStorage.getItem(KEY) || "{}") || {}; }
-    catch(e){ return {}; }
-  }
-  function save(state){
-    try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){}
-  }
-
-  var state = load();
-  var touched = false;
-  boxes.forEach(function(b){
-    if(b.defaultChecked){
-      b.checked = true;                 // позначено як зроблене в самому файлі
-      if(state[b.id] !== true){ state[b.id] = true; touched = true; }
-    }else if(Object.prototype.hasOwnProperty.call(state, b.id)){
-      b.checked = !!state[b.id];
-    }else{
-      state[b.id] = b.checked;   // перший візит: беремо позначки з розмітки
-      touched = true;
-    }
-  });
-  if(touched) save(state);
-
-  function render(){
-    var scope = activeBoxes();
-    var done = scope.filter(function(b){ return b.checked; }).length;
-    var total = scope.length;
-    var p = total ? Math.round(done / total * 100) : 0;
-    bar.style.width = p + "%";
-    pct.textContent = p;
-    ratio.textContent = done + " / " + total;
-
-    document.querySelectorAll(".phase").forEach(function(ph){
-      var local = Array.prototype.slice.call(ph.querySelectorAll(".box"));
-      var d = local.filter(function(b){ return b.checked; }).length;
-      var el = ph.querySelector("[data-count]");
-      if(el) el.textContent = d + " / " + local.length;
-    });
-  }
-
-  boxes.forEach(function(b){
-    b.addEventListener("change", function(){
-      state[b.id] = b.checked;
-      save(state);
-      render();
-    });
-  });
-
-  document.getElementById("reset").addEventListener("click", function(){
-    if(!confirm("Зняти всі позначки в цьому списку?")) return;
-    activeBoxes().forEach(function(b){ b.checked = false; state[b.id] = false; });
-    save(state);
-    render();
-  });
-
-  document.querySelectorAll("[data-copy]").forEach(function(btn){
-    btn.addEventListener("click", function(){
-      var pre = btn.parentNode.querySelector("pre");
-      if(!pre) return;
-      var ok = function(){ btn.textContent = "Скопійовано"; setTimeout(function(){ btn.textContent = "Копіювати"; }, 1600); };
-      try{
-        if(navigator.clipboard && navigator.clipboard.writeText){
-          navigator.clipboard.writeText(pre.textContent).then(ok, function(){ btn.textContent = "Виділіть вручну"; });
-          return;
-        }
-      }catch(e){}
-      btn.textContent = "Виділіть вручну";
-    });
-  });
-
-  // ---------- перемикач списків ----------
-  function switchTo(key){
-    current = key;
-    Object.keys(views).forEach(function(k){ views[k].hidden = (k !== key); });
-    document.getElementById("tab-roadmap").setAttribute("aria-selected", key === "roadmap");
-    document.getElementById("tab-strategy").setAttribute("aria-selected", key === "strategy");
-    document.querySelectorAll("[data-foot]").forEach(function(p){
-      p.hidden = (p.getAttribute("data-foot") !== key);
-    });
-    document.querySelectorAll("[data-lede]").forEach(function(p){
-      p.hidden = (p.getAttribute("data-lede") !== key);
-    });
-    try{ localStorage.setItem(KEY + "-tab", key); }catch(e){}
-    render();
-  }
-  document.getElementById("tab-roadmap").addEventListener("click", function(){ switchTo("roadmap"); });
-  document.getElementById("tab-strategy").addEventListener("click", function(){ switchTo("strategy"); });
-
-  var saved = "roadmap";
-  try{ saved = localStorage.getItem(KEY + "-tab") || "roadmap"; }catch(e){}
-  switchTo(views[saved] ? saved : "roadmap");
-})();
-</script>
+<script src="app.js?v=1"></script>
 
 </body>
 </html>
